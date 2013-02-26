@@ -104,6 +104,9 @@ int main (int argc, char** argv)
 	      break;
 	    }
 
+	  if (p.points() <= 1 && p.shotguns() == 2)
+	    std::cout << "Fuck it for one brain !" << std::endl;
+
 	  display.what_now ();
 	  std::string choice;
 	  do

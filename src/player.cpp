@@ -33,6 +33,15 @@ void Player::get_dice (Die d)
   m_dice.push_back (d);
 }
 
+unsigned int Player::shotguns () const
+{
+  unsigned int out = 0;
+  for (unsigned int i = 0; i < m_dice.size (); ++ i)
+    if (m_dice[i].value () == SHOTGUN)
+      ++ out;
+  return out;
+}
+
 unsigned int Player::points () const
 {
   unsigned int out = 0;

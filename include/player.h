@@ -36,6 +36,7 @@ public:
   const std::string& name () const;
   void get_dice (Die d);
   unsigned int points () const;
+  unsigned int shotguns () const;
   unsigned int score () const;
   bool is_dead () const;
   const std::vector<Die>& dice () const;
