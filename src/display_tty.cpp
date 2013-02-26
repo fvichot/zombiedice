@@ -108,8 +108,23 @@ void Display_tty::one_die (const Die& d) const
 
 void Display_tty::dead (const Player& p) const
 {
-  std::cout << std::endl << red << "==> " << p.name ()
-	    << " is dead!" << white << std::endl;
+  unsigned int r = rand () % 3;
+  std::cout << std::endl << red << "==> ";
+  switch (r)
+    {
+    case 0:
+      std::cout << p.name () << " is dead!";
+      break;
+    case 1:
+      std::cout << "BOOM! Three shotguns for " << p.name () << "!";
+      break;
+    case 2:
+      std::cout << "So long, " << p.name () << ", you're out!";
+      break;
+    default:
+      std::cout << "IT IS APOCALYPSE, RUN FOR YOUR LIVES!" << std::endl;
+    }
+  std::cout << white << std::endl;
 }
 
 void Display_tty::stop (const Player& p) const
