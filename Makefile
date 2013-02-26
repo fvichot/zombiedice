@@ -2,6 +2,7 @@ CC=`which g++`
 LD=`which g++`
 RM=`which rm` -f
 MV=`which mv`
+MK=`which mkdir`
 
 INCDIR = include
 SRCDIR = src
@@ -13,9 +14,15 @@ TARGET = zombiedice
 CFLAGS = -Wall -Wextra -pedantic -g -I$(INCDIR)
 LFLAGS = $(shell sdl-config --libs) -lSDL_image -lGL -lGLU -lm
 
-all : $(BINDIR)/$(TARGET)
+all : $(BINDIR)/$(TARGET) $(BINDIR) $(OBJDIR)
 
 objects : $(OBJ)
+
+$(BINDIR):
+	$(MK) $(BINDIR)
+
+$(OBJDIR):
+	$(MK) $(OBJDIR)
 
 $(BINDIR)/$(TARGET) : $(OBJ)
 	@echo -n "+ Linking" $@"..."
