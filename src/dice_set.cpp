@@ -14,7 +14,9 @@
 
 #include <cstdlib>
 #include <ctime>
-#include <stack>
+#include <utility>
+#include <vector>
+#include <algorithm>
 
 #include "common.h"
 #include "dice_set.h"
@@ -36,33 +38,32 @@ void Dice_set::clear ()
     m_set.pop ();
 }
 
+bool comp_pair(const std::pair<int, Die> & a,
+               const std::pair<int, Die> & b) {
+   return (a.first < b.first);
+}
+
 void Dice_set::init ()
 {
   clear ();
 
-  std::stack<Die> dice[3];
+  std::vector<Die> dice;
 
   for (int i = 0; i < 6; ++ i)
-    dice[0].push (Die (GREEN));
+    dice.push_back (Die (GREEN));
   for (int i = 0; i < 4; ++ i)
-    dice[1].push (Die (YELLOW));
+    dice.push_back (Die (YELLOW));
   for (int i = 0; i < 3; ++ i)
-    dice[2].push (Die (RED));
+    dice.push_back (Die (RED));
 
-  while (!(dice[0].empty () && dice[1].empty () && dice[2].empty ()))
-    {
-      unsigned int index;
-      do
-	{
-	  index = rand () % 3;
-	}
-      while (dice[index].empty ());
+  std::vector<std::pair<int, Die> > tmp;
+  for (int i = 0; i < 13; ++ i)
+    tmp.push_back(std::make_pair(rand(), dice[i]));
 
-      Die die = dice[index].top ();
-      dice[index].pop ();
-      insert (die);
-    }
-
+  std::sort (tmp.begin(), tmp.end(), comp_pair);
+  
+  for (int i = 0; i < 13; ++ i)
+    insert(tmp[i].second);
 }
 
 Die Dice_set::pick ()
