@@ -1,0 +1,9 @@
+*.creator
+*.creator.user
+*.creator.user.*
+*.files
+*.includes
+*.config
+bin
+build
+obj
