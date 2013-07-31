@@ -16,17 +16,41 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <cstdio>
 
 #include "common.h"
 #include "dice_set.h"
 #include "die.h"
 #include "display_tty.h"
 #include "player.h"
+//#include "tree.hh"
+
+//std::string play_ai(const Player & p, const std::vector<Die> & running)
+//{
+//  const std::vector<Die> & p_dice = p.dice();
+//  int dice_left = 13 - p_dice.size();
+  
+//  int color_left[3] = {6, 4, 3};
+//  double shotgun_likelyhood[3] = {1./6., 1./3., 1./2.};
+//  for(int i = 0; i < p_dice.size(); ++ i)
+//    color_left[p_dice[i].type()]--;
+  
+//  double death_likelyhood = 1.;
+//  for(int i = 0; i < running.size(); ++ i) {
+//    int type = running[i].type();
+//    color_left[type]--;
+//    death_likelyhood *= shotgun_likelyhood
+//  }
+    
+//}
+
 
 typedef Display_tty Display;
 
 int main (int argc, char** argv)
 {
+  srand (time (NULL));
+
   if (argc == 1)
     {
       std::cout << "Usage: " << argv[0] << " [nb_players]" << std::endl;
